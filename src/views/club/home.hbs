@@ -1,0 +1,58 @@
+{{> headerClub}}
+
+<section id="home-club">
+    <div class="container">
+        <div class="row">
+            <h3>Check in history</h3>
+            <div class="ml-auto">
+                <a class="nav-link btn btn-success m-1" href="#" data-toggle="modal" data-target="#modal-checkin"><i
+                        class="fas fa-user-check"></i>Check in</a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Citizen</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">CheckInBy</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each checkinHistory}}
+                <tr>
+                    <td>{{this.citizenName}}</td>
+                    <td>{{this.date}}</td>
+                    <td>{{this.checkinBy}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Modal checkin-->
+<div class="modal fade" id="modal-checkin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Check in</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/club/check-in" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="citizen">CheckIn Code</label>
+                        <input type="text" class="form-control" id="citizen" name="clubCode">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Check in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

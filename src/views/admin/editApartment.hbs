@@ -1,0 +1,36 @@
+{{> headerAdmin}}
+<section id="view-edit-apartment">
+    <div class="container">
+        <h2>Update apartment</h2>
+        <form action="/admin/apartment/{{apartments._id}}" method="post">
+            <div class="form-group">
+                <label for="deparment_number" class="col-form-label">Deparment
+                    number</label>
+                <input type="text" class="form-control" value="{{apartments.department_number}}" name="deparment_number"
+                    id="deparment_number">
+            </div>
+            <div class="form-group">
+                <label for="floor_number" class="col-form-label">Floor
+                    number</label>
+                <input type="text" class="form-control" value="{{apartments.floor_number}}" name="floor_number"
+                    id="floor_number">
+            </div>
+            <div class="form-group">
+                <label for="people" class="col-form-label">People</label>
+                <input type="text" class="form-control" value="{{apartments.people}}" name="people" id="people">
+            </div>
+            <div class="form-group">
+                <label for="fee" class="col-form-label">Fee</label>
+                <input type="text" class="form-control" value="{{apartments.fee}}" name="fee" id="fee">
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-form-label">Description</label>
+                <textarea class="form-control" name="description" id="description">{{apartments.description}}</textarea>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</section>

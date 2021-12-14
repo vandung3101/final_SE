@@ -1,0 +1,73 @@
+{{> headerCitizen}}
+
+<section id="service-page">
+    <div class="container">
+        <div class="row ">
+            <h3>My services</h3>
+            <a class="btn btn-primary mb-5 ml-auto" href="#" data-toggle="modal" data-target="#modal-create-service"><i
+                    class="fas fa-headset"></i>Request</a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each services}}
+                <tr>
+                    <th scope="row">{{sum @index 1}}</th>
+                    <td>{{this.type}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.content}}</td>
+                    <td>{{this.status}}</td>
+                    <td>{{this.date}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<div class="modal fade" id="modal-create-service" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Services</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/citizen/send-service-request" method="post">
+                <div class="modal-body">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="type" value="dichoho" checked>
+                        <label class="form-check-label" for="type">
+                            Market
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="type" value="dondep">
+                        <label class="form-check-label" for="type">
+                            Clean room
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="content" class="col-form-label">Description</label>
+                        <textarea class="form-control" name="content" id="content"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

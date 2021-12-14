@@ -1,0 +1,135 @@
+<section id="nav-bar">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+        {{!-- <div class=""> --}}
+            <a class="navbar-brand ml-3 font-logo" href="#">
+                Apartment
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="#"><i class="fas fa-home"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-notification"><i
+                                class="fas fa-bell"></i>Notification</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hello
+                            {{account.username}}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="" data-toggle="modal"
+                                data-target="#modal-create-notify">Create notication</a>
+                            <a class="dropdown-item" href="" data-toggle="modal"
+                                data-target="#change-password-modal">Change
+                                password</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout">Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            {{!--
+        </div> --}}
+
+    </nav>
+</section>
+
+
+<!-- Modal notify-->
+<div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Notification</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{#each notifications}}
+                <div class="col col-notify">
+                    <h4>{{this.title}}</h4>
+                    <p>{{this.date}}</p>
+                    <p>{{this.content}}</p>
+                </div>
+                {{/each}}
+            </div>
+            <div class="modal-footer" align="center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Form modals send report --}}
+<div class="modal fade" id="modal-create-notify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create notification</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/service/notify" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="content" class="col-form-label">Content</label>
+                        <textarea class="form-control" name="content" id="content"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{!-- Modal Change Password --}}
+<div class="modal fade" id="change-password-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/changePassword" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="newPassword" class="col-form-label">New password</label>
+                        <input type="password" class="form-control" name="newPassword" id="newPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword" class="col-form-label">Confirm new password</label>
+                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Change</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

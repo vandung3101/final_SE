@@ -1,0 +1,28 @@
+{{> headerAdmin}}
+<section id="view-edit-apartment">
+    <div class="container">
+        <h2>Update employee</h2>
+        <form action="/admin/employee/{{employee._id}}" method="post">
+            <div class="form-group">
+                <label for="username" class="col-form-label">User name</label>
+                <input type="text" class="form-control" value="{{employee.username}}" name="username" id="username">
+            </div>
+            <div class="form-group">
+                <label for="name" class="col-form-label">Full name
+                    number</label>
+                <input type="text" class="form-control" value="{{employee.name}}" name="name" id="name">
+            </div>
+            <div class="form-group">
+                <label for="role" class="col-form-label">Type</label>
+                <input type="text" class="form-control" value="{{employee.role}}" name="role" id="role">
+            </div>
+            <div class="form-group">
+                <label for="phone" class="col-form-label">Phone number</label>
+                <input type="text" class="form-control" value="{{employee.phone}}" name="phone" id="phone">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</section>

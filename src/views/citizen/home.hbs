@@ -1,0 +1,161 @@
+{{> headerCitizen}}
+<section id="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="promo-title">Apartment</p>
+                <p class="font-logo">House Beautiful is an interior decorating magazine that focuses on decorating and
+                    the domestic arts. First published in 1896, it is currently published by the Hearst Corporation, who
+                    began publishing it in 1934. It is the oldest still-published magazine in what is known as the
+                    "shelter magazine" genre.</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="/img/home.png" class="img-fuild">
+            </div>
+        </div>
+    </div>
+</section>
+
+{{!-- Service Section --}}
+<section id="services">
+    <div class="container text-center">
+        <h1 class="title">What news club?</h1>
+        <div class="row text-center">
+            <div class="col-md-4 services">
+                <img src="/img/sport.png" alt="" class="services-img">
+                <h4>Swimming</h4>
+                <p>Swimming is an individual or team racing sport that requires the use of one's entire body to move
+                    through water</p>
+            </div>
+
+            <div class="col-md-4 services">
+                <img src="/img/sport.png" alt="" class="services-img">
+                <h4>Badminton</h4>
+                <p>Badminton is a racquet sport played using racquets to hit a shuttlecock across a net. Although it may
+                    be played with larger teams</p>
+            </div>
+
+            <div class="col-md-4 services">
+                <img src="/img/sport.png" alt="" class="services-img">
+                <h4>Tenis</h4>
+                <p>Tennis is a racket sport that can be played individually against a single opponent or between two
+                    teams of two players each</p>
+            </div>
+
+        </div>
+
+        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#modal-register-club"><i
+                class="fas fa-running"></i>Join now</a>
+    </div>
+</section>
+
+{{!-- Market --}}
+<section id="market">
+    <div class="container text-center">
+        <h1 class="title mt-5">You're so busy? Let us help you</h1>
+        <div class="row text-center">
+            <div class="col-md-4 services">
+                <img src="/img/room.png" alt="" class="services-img">
+                <h4>Market</h4>
+                <p>Fee: 20.000 VND</p>
+                <p>We will choose best food for you</p>
+                <a href="/citizen/food">See all food today</a>
+            </div>
+
+            <div class="col-md-4 services">
+                <img src="/img/room.png" alt="" class="services-img">
+                <h4>Clean room</h4>
+                <p>Fee: 100.000 VND</p>
+
+                <p>
+                    Let your room become clean and airy
+                </p>
+            </div>
+
+            <div class="col-md-4 services">
+                <img src="/img/room.png" alt="" class="services-img">
+                <h4>Other services</h4>
+                <p>Fee: 1000</p>
+
+                <p>Other</p>
+            </div>
+        </div>
+        <a class="btn btn-primary mb-5" href="#" data-toggle="modal" data-target="#modal-create-service"><i
+                class="fas fa-headset"></i>Request Services</a>
+    </div>
+</section>
+{{> footer}}
+
+{{!-- Modal register club --}}
+<div class="modal fade" id="modal-register-club" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Register club</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <form action="/citizen/club" method="post">
+                <div class="modal-body">
+                    <select class="form-control">
+                        <option>Swimming</option>
+                        <option>Soccer</option>
+                        <option>Badminton</option>
+                        <option>Tenis</option>
+                        <option>Volleyball</option>
+                    </select>
+                </div>
+                <div class="modal-footer" align="center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+{{!-- Modal create services --}}
+<div class="modal fade" id="modal-create-service" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Services</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/citizen/send-service-request" method="post">
+                <div class="modal-body">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                            value="dichoho" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Market
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                            value="dondep">
+                        <label class="form-check-label" for="exampleRadios2">
+                            Clean room
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="content" class="col-form-label">Description</label>
+                        <textarea class="form-control" name="content" id="content"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

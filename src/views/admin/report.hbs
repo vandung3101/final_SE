@@ -1,0 +1,31 @@
+{{> headerAdmin}}
+
+<section id="render-report">
+    <div class="container">
+        <h3>Report</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Report name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Created By</th>
+                        <th scope="col">File</th>
+                        <th scope="col">Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each reports}}
+                    <tr>
+                        <td>{{this.name}}</td>
+                        <td>{{this.description}}</td>
+                        <td>{{this.createdBy}}</td>
+                        <td>
+                            <a href="../{{this.url}}">Download</a>
+                        </td>
+                        <td>{{this.date}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+    </div>
+</section>

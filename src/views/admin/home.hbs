@@ -1,0 +1,145 @@
+{{> headerAdmin}}
+<div id="home-admin">
+    <div class="container">
+        <div class="row">
+            <h2>Apartment</h2>
+            <div class="form-group ml-auto">
+                <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#modal-create-apartment">Create
+                    Apartment</a>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Room</th>
+                        <th scope="col">People</th>
+                        <th scope="col">Fee</th>
+                        <th scope="col">Description</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each apartments}}
+                    <tr>
+                        <th scope="row">{{sum @index 1}}</th>
+                        <td>{{this.floor_number}}.{{this.department_number}}</td>
+                        <td class="format-to-display">{{{splitContent this.people}}}</td>
+                        <td>{{this.fee}}</td>
+                        <td>{{this.description}}</td>
+                        <td><a href="/admin/apartment/{{this._id}}/edit">Edit</a></td>
+                        <td><a href="" data-toggle="modal" data-id="{{this._id}}"
+                                data-target="#modal-delete-apartment">Delete</a></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+{{!-- Modal create apartment--}}
+<div class="modal fade" id="modal-create-apartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create apartment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/admin/apartment" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="username" class="col-form-label">Username</label>
+                        <input type="text" class="form-control" name="username" id="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Full name</label>
+                        <input type="text" class="form-control" name="name" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="people" class="col-form-label">People</label>
+                        <textarea class="form-control" name="people" id="people"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="col-form-label">Phone number</label>
+                        <input type="text" class="form-control" name="phone" id="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="floor_number" class="col-form-label">Floor number</label>
+                        <input type="text" class="form-control" name="floor_number" id="floor_number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deparment_number" class="col-form-label">Department number</label>
+                        <input type="text" class="form-control" name="department_number" id="deparment_number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fee" class="col-form-label">Fee</label>
+                        <input type="text" class="form-control" name="fee" id="fee">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Description</label>
+                        <textarea class="form-control" name="description" id="description"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal delete apartment-->
+<div class="modal fade" id="modal-delete-apartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete apartment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this apartment?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary1" data-dismiss="modal">Close</button>
+                <button id="btn-delete-apartment" type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{!-- Script for delete aparment --}}
+<form method="post" id="delete-apartment-form"></form>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var aparmentId;
+        var deleteForm = document.forms['delete-apartment-form'];
+        var btnDeleteApartment = document.getElementById('btn-delete-apartment');
+        $('#modal-delete-apartment').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            aparmentId = button.data('id');
+        });
+
+        btnDeleteApartment.onclick = function () {
+            deleteForm.action = '/admin/apartment/' + aparmentId + '?_method=DELETE';
+            deleteForm.submit();
+        }
+    });
+</script>

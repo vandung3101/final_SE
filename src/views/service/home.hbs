@@ -1,0 +1,83 @@
+{{> headerService}}
+
+<section id="home-report">
+    <div class="container">
+        <h3>Service management</h3>
+        <form>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Citizent</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each services}}
+                    <tr>
+                        <th scope="row">{{sum @index 1}}</th>
+                        <td>{{this.citizen}}</td>
+                        <td>{{this.type}}</td>
+                        <td>{{this.content}}</td>
+                        <td>{{this.price}}</td>
+                        <td>{{this.date}}</td>
+                        {{#ifEquals this.status "pending"}}
+                        <td><a href="/service/confirm/{{this._id}}" class="btn btn-success pb-1">Confirm</a></td>
+                        <td><a href="/service/cancel/{{this._id}}" class="btn btn-danger pb-1">Cancel</a></td>
+                        {{else}}
+                        <td>{{this.status}}</td>
+                        {{/ifEquals}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </form>
+    </div>
+</section>
+
+
+
+<div class="modal fade" id="modal-confirm-service" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to confirm this service?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary1" data-dismiss="modal">Close</button>
+                <button id="btn-delete-apartment" type="button" class="btn btn-success">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<form method="post" id="confirm-service"></form>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var servicetId;
+        var confirmService = document.forms['confirm-service'];
+        var btnConfirm = document.getElementById('btn-delete-apartment');
+        $('#modal-confirm-service').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            servicetId = button.data('id');
+        });
+
+        btnConfirm.onclick = function () {
+            confirmService.action = '/service/confirm/' + servicetId;
+            confirmService.submit();
+        }
+    });
+</script>
