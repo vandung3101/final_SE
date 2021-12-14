@@ -51,7 +51,7 @@ class CitizenController {
 
     async renderClub(req, res) {
         const account = req.account;
-        const checkin = await CheckinHistory.find({ citizen: account._id }).sort({ date: -1 });
+        const checkin = await CheckinHistory.find({ citizen: account._id }).sort({ date: -1 }).lean();
         const notifications = await Notification.find({}).sort({ date: -1 }).lean();
         res.render('./citizen/club', { account, checkin, notifications });
     }
