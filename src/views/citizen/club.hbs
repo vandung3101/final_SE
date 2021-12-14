@@ -12,17 +12,17 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">Citizen</th>
                     <th scope="col">Time</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">CheckInBy</th>
                 </tr>
             </thead>
             <tbody>
-                {{#each checkin}}
+                {{#each checkinHistory}}
                 <tr>
-                    <th scope="row">{{sum @index 1}}</th>
-                    <td>this.date</td>
-                    <td><i class="fas fa-check"></i></td>
+                    <td>{{this.citizenName}}</td>
+                    <td>{{this.date}}</td>
+                    <td>{{this.checkinBy}}</td>
                 </tr>
                 {{/each}}
             </tbody>
