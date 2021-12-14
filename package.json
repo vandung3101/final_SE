@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon src/index.js",
+    "start": "node src/index.js",
     "watch": "node-sass --watch src/public/scss/ --output src/public/stylesheets/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
