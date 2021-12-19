@@ -4,11 +4,11 @@
     <div class="container">
         <h3>Service management</h3>
         <form>
-            <table class="table">
-                <thead>
+            <table class="table table-hover">
+                <thead class="thead-dark">
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Citizent</th>
+                        <th scope="col">Apartment</th>
                         <th scope="col">Type</th>
                         <th scope="col">Description</th>
                         <th scope="col">Price</th>
@@ -21,12 +21,12 @@
                     {{#each services}}
                     <tr>
                         <th scope="row">{{sum @index 1}}</th>
-                        <td>{{this.citizen}}</td>
+                        <td>{{this.apartment}}</td>
                         <td>{{this.type}}</td>
                         <td>{{this.content}}</td>
                         <td>{{this.price}}</td>
                         <td>{{this.date}}</td>
-                        {{#ifEquals this.status "pending"}}
+                        {{#ifEquals this.status "Pending"}}
                         <td><a href="/service/confirm/{{this._id}}" class="btn btn-success pb-1">Confirm</a></td>
                         <td><a href="/service/cancel/{{this._id}}" class="btn btn-danger pb-1">Cancel</a></td>
                         {{else}}

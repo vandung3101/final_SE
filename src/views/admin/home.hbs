@@ -8,16 +8,15 @@
                     Apartment</a>
             </div>
 
-            <table class="table">
-                <thead>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Room</th>
                         <th scope="col">People</th>
                         <th scope="col">Fee</th>
                         <th scope="col">Description</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,8 +27,8 @@
                         <td class="format-to-display">{{{splitContent this.people}}}</td>
                         <td>{{this.fee}}</td>
                         <td>{{this.description}}</td>
-                        <td><a href="/admin/apartment/{{this._id}}/edit">Edit</a></td>
-                        <td><a href="" data-toggle="modal" data-id="{{this._id}}"
+                        <td><a class="btn btn-info mr-2" href="/admin/apartment/{{this._id}}/edit">Edit</a>
+                        <a class="btn btn-danger" href="" data-toggle="modal" data-id="{{this._id}}"
                                 data-target="#modal-delete-apartment">Delete</a></td>
                     </tr>
                     {{/each}}

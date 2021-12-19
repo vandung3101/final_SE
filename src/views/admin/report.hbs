@@ -3,8 +3,8 @@
 <section id="render-report">
     <div class="container">
         <h3>Report</h3>
-            <table class="table">
-                <thead>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
                     <tr>
                         <th scope="col">Report name</th>
                         <th scope="col">Description</th>
@@ -20,7 +20,7 @@
                         <td>{{this.description}}</td>
                         <td>{{this.createdBy}}</td>
                         <td>
-                            <a href="../{{this.url}}">Download</a>
+                            <a class="btn btn-outline-warning btn-sm" href="../{{this.url}}">Download</a>
                         </td>
                         <td>{{this.date}}</td>
                     </tr>

@@ -26,23 +26,27 @@ class CitizenController {
 
     async sendServiceRequest(req, res) {
         const account = req.account;
+        const apartment = await Apartment.findOne({ account: account._id }).lean();
         if (req.body.type === "dichoho") {
             const service = new Service({
-                type: "Market",
-                price: 20000,
-                content: req.body.content,
-                citizen: account._id,
-                status: "pending",
+              type: "Market",
+              apartment: apartment.floor_number + "." + apartment.department_number,
+              price: 20000,
+              content: req.body.content,
+              citizen: account._id,
+              status: "Pending",
             });
             await service.save();
             res.redirect('/citizen/services');
         } else {
             const service = new Service({
-                type: "Clean room",
-                price: 100000,
-                content: req.body.content,
-                citizen: account._id,
-                status: "pending",
+              type: "Clean room",
+              apartment:
+                apartment.floor_number + "." + apartment.department_number,
+              price: 100000,
+              content: req.body.content,
+              citizen: account._id,
+              status: "pending",
             });
             await service.save();
             res.redirect('/citizen/services');

@@ -7,14 +7,15 @@
                 <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#modal-create-employee"></i>Create
                     employee</a>
             </div>
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">User name</th>
                         <th scope="col">Full name</th>
                         <th scope="col">Phone number</th>
                         <th scope="col">Type</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,8 +26,8 @@
                         <td>{{this.name}}</td>
                         <td>{{this.phone}}</td>
                         <td>{{this.role}}</td>
-                        <td><a href="/admin/employee/{{this._id}}/edit">Edit</a></td>
-                        <td><a href="" data-toggle="modal" data-id="{{this._id}}"
+                        <td><a class="btn btn-info mr-2" href="/admin/employee/{{this._id}}/edit">Edit</a>
+                        <a href="" class="btn btn-danger" data-toggle="modal" data-id="{{this._id}}"
                                 data-target="#modal-delete-employee">Delete</a></td>
                     </tr>
                     {{/each}}

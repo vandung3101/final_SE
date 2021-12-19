@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const Service = new Schema({
     citizen: { type: String },
+    apartment: { type: String },
     type: { type: String },
     price: { type: Number },
     content: { type: String },

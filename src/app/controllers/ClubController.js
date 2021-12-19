@@ -1,6 +1,6 @@
 const Account = require('../models/Account');
 const CheckinHistory = require('../models/CheckinHistory');
-
+const Apartment = require('../models/Apartment');
 
 class ClubController {
     async renderHome(req, res) {
@@ -14,12 +14,13 @@ class ClubController {
         const account = req.account;
         // find account by clubCode
         const citizen = await Account.findOne({ clubCode: req.body.clubCode });
+        const apartment = await Apartment.findOne({ account: citizen._id });
         if (!citizen) {
             return res.redirect('back');
         } else {
             const checkinHistory = new CheckinHistory({
                 citizen: citizen._id,
-                citizenName: citizen.name,
+                citizenName: req.body.citizenName + " " + apartment.floor_number + "." + apartment.department_number,
                 date: new Date(),
                 checkinBy: account.name,
             });
