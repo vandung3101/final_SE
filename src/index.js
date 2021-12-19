@@ -28,7 +28,7 @@ app.use(expressSession({
     secret: credentials.cookieSecret,
 }))
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(bodyParser.json());
 // Http request
 // app.use(morgan('combined'));
 app.use(methodOverride('_method'))
@@ -50,5 +50,5 @@ route(app);
 initAdmin.createAdminAccount();
 
 app.listen(port, () => {
-    console.log(`App listening at http://localhost:${port}`)
+    // console.log(`App listening at http://localhost:${port}`)
 })

@@ -8,9 +8,9 @@ async function connect() {
             useUnifiedTopology: true,
           }
         );
-        console.log('Connect successfully!')
+        // console.log('Connect successfully!')
     } catch (e) {
-        console.log('Connect failure!')
+        // console.log('Connect failure!')
     }
 }
 
