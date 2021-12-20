@@ -1,6 +1,11 @@
 const expect = require("chai").expect;
 const app = require("../src/index");
 const agent = require("superagent").agent();
+const Account = require("../src/app/models/Account");
+const Apartment = require("../src/app/models/Apartment");
+const Service = require("../src/app/models/Service");
+const Notification = require("../src/app/models/Notification");
+
 let Cookies;
 
 describe("Test Admin", function () {
@@ -42,8 +47,9 @@ describe("Test Admin", function () {
                 description: "description1",
             })
             .set("Cookie", Cookies)
-            .end(function (err, res) {
-                expect(res.status).to.equal(200);
+            .end(async function (err, res) {
+                let new_apartment = await Apartment.findOne({ name: "name1" }).lean();
+                expect(new_apartment).to.not.equal(null);
                 done();
             });
     });
@@ -59,7 +65,8 @@ describe("Test Admin", function () {
             })
             .set("Cookie", Cookies)
             .end(function (err, res) {
-                expect(res.status).to.equal(200);
+                let new_employee = Account.findOne({ username: "username2", role: "club" }).lean();
+                expect(new_employee).to.not.equal(null);
                 done();
             });
     }
@@ -91,7 +98,7 @@ describe("Test Citizen", function () {
     before(function (done) {
         agent
             .post("/login")
-            .send({ username: "vanhung", password: "0339607003" })
+            .send({ username: "username1", password: "0339607003" })
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 Cookies = res.req._headers.cookie;
@@ -131,7 +138,8 @@ describe("Test Citizen", function () {
             })
             .set("Cookie", Cookies)
             .end(function (err, res) {
-                expect(res.status).to.equal(200);
+                let new_service = Service.findOne({ type: "dichoho", content: "dichoho test" }).lean(); 
+                expect(new_service).to.not.equal(null);
                 done();
             });
     }
@@ -143,7 +151,8 @@ describe("Test Citizen", function () {
             .send({})
             .set("Cookie", Cookies)
             .end(function (err, res) {
-                expect(res.status).to.equal(200);
+                let account = Account.findOne({ username: "username1"}).lean();
+                expect(account.clubCode).to.not.equal("");
                 done();
             });
     }
@@ -207,7 +216,8 @@ describe("Test Service Employee", function () {
             })
             .set("Cookie", Cookies)
             .end(function (err, res) {
-                expect(res.status).to.equal(200);
+                let new_notify = Notification.findOne({ title: "title", content: "content" }).lean();
+                expect(new_notify).to.not.equal(null);
                 done();
             });
 
