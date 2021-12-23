@@ -1,0 +1,62 @@
+{{> headerCitizen}}
+<section id="club-citizen">
+    <div class="container">
+        <div class="row">
+            {{#if account.clubCode}}
+            <div class="btn btn-outline-success mb-2">Use this code to Checkin {{account.clubCode}}</div>
+            {{else}}
+            <a class="btn btn-primary ml-auto mb-2" href="#" data-toggle="modal" data-target="#modal-register-club"><i
+                    class="fas fa-running"></i>Join now</a>
+            {{/if}}
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Citizen</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">CheckInBy</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each checkin}}
+                <tr>
+                    <td>{{this.citizenName}}</td>
+                    <td>{{this.date}}</td>
+                    <td>{{this.checkinBy}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<div class="modal fade" id="modal-register-club" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Register club</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <form action="/citizen/club" method="post">
+                <div class="modal-body">
+                    <select class="form-control">
+                        <option>Swimming</option>
+                        <option>Soccer</option>
+                        <option>Badminton</option>
+                        <option>Tenis</option>
+                        <option>Volleyball</option>
+                    </select>
+                </div>
+                <div class="modal-footer" align="center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
