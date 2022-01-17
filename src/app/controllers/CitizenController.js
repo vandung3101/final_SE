@@ -46,7 +46,7 @@ class CitizenController {
               price: 100000,
               content: req.body.content,
               citizen: account._id,
-              status: "pending",
+              status: "Pending",
             });
             await service.save();
             res.redirect('/citizen/services');
